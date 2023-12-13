@@ -1,53 +1,65 @@
-import time
+from testpage import OperationsHelper
+import logging
 import yaml
+import random
+import string
+
 
 with open("testdata.yaml") as f:
     testdata = yaml.safe_load(f)
 
-
-def test_step1(site, log_xpath, pass_xpath, btn_xpath, result_xpath):
-    input1 = site.find_element("xpath", log_xpath)
-    input1.send_keys("test")
-    input2 = site.find_element("xpath", pass_xpath)
-    input2.send_keys("test")
-    btn = site.find_element("xpath", btn_xpath)
-    btn.click()
-    err_lable = site.find_element("xpath", result_xpath)
-    assert err_lable.text == "401"
+def test_step1(browser):
+    logging.info('Test 1 starting')
+    testpage = OperationsHelper(browser)
+    testpage.go_to_site()
+    testpage.enter_login('test')
+    testpage.enter_pass('test')
+    testpage.click_login_button()
+    assert testpage.get_error_text() == '401'
 
 
-def test_step2(site, log_xpath, pass_xpath, btn_xpath, result_login):
-    input1 = site.find_element("xpath", log_xpath)
-    input1.send_keys(testdata["name"])
-    input2 = site.find_element("xpath", pass_xpath)
-    input2.send_keys(testdata["passwd"])
-    btn = site.find_element("xpath", btn_xpath)
-    btn.click()
-    login = site.find_element("xpath", result_login)
-    assert login.text == "Blog"
+def test_step2(browser):
+    logging.info('Test 2 starting')
+    testpage = OperationsHelper(browser)
+    testpage.go_to_site()
+    testpage.enter_login(testdata['name'])
+    testpage.enter_pass(testdata['passwd'])
+    testpage.click_login_button()
+    assert testpage.get_result_auth() == "Blog"
 
 
-def test_step3(site, log_xpath, pass_xpath, btn_xpath, btn_create_post,
-               btn_save_post, tittle_post_xpath, description_post_xpath,
-               content_post_xpath, tittle_save_post):
-    input1 = site.find_element("xpath", log_xpath)
-    input1.send_keys(testdata["name"])
-    input2 = site.find_element("xpath", pass_xpath)
-    input2.send_keys(testdata["passwd"])
-    btn = site.find_element("xpath", btn_xpath)
-    btn.click()
-    time.sleep(testdata["sleep_time"])
-    btn_create = site.find_element("xpath", btn_create_post)
-    btn_create.click()
-    time.sleep(testdata["sleep_time"])
-    input1 = site.find_element("xpath", tittle_post_xpath)
-    input1.send_keys('Позитивный настрой')
-    input2 = site.find_element("xpath", description_post_xpath)
-    input2.send_keys('Пойду пожру тортик')
-    input2 = site.find_element("xpath", content_post_xpath)
-    input2.send_keys('Наверно, надо и здесь что-то написать. Без всяких генераторов текста')
-    btn_post = site.find_element("xpath", btn_save_post)
-    btn_post.click()
-    time.sleep(testdata["sleep_time"])
-    result = site.find_element("xpath", tittle_save_post)
-    assert result.text == "Позитивный настрой"
+def test_step3(browser):
+    logging.info('Test 3 starting')
+    testpage = OperationsHelper(browser)
+    testpage.go_to_site()
+    testpage.click_create_post_button()
+    tittle = ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
+    testpage.create_tittle_post(tittle)
+    testpage.create_description_post(''.join(random.choices(string.ascii_uppercase + string.digits, k=5)))
+    testpage.create_content_post(''.join(random.choices(string.ascii_uppercase + string.digits, k=5)))
+    testpage.click_button_save_post()
+    assert testpage.get_result_public_post() == tittle
+
+
+def test_step4(browser):
+    logging.info('Test 4 starting')
+    testpage = OperationsHelper(browser)
+    testpage.click_contact()
+    testpage.enter_name_to_contact_us('Test')
+    testpage.enter_email_to_contact_us('sdff@mail.ru')
+    testpage.enter_content_to_contact_us('Проверка')
+    testpage.click_contact_us_btn()
+    assert testpage.checkout_alert() == 'Form successfully submitted'
+
+
+def test_step5(browser):
+    logging.info('Test 5 starting')
+    testpage = OperationsHelper(browser)
+    testpage.log_out()
+    assert testpage.get_result_login_out() == 'LOGIN'
+
+
+
+
+
+
