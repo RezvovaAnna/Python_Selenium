@@ -4,9 +4,9 @@ import yaml
 import random
 import string
 
-
 with open("testdata.yaml") as f:
     testdata = yaml.safe_load(f)
+
 
 def test_step1(browser):
     logging.info('Test 1 starting')
@@ -57,9 +57,3 @@ def test_step5(browser):
     testpage = OperationsHelper(browser)
     testpage.log_out()
     assert testpage.get_result_login_out() == 'LOGIN'
-
-
-
-
-
-
