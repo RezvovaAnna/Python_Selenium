@@ -21,7 +21,7 @@ def send_email():
         part['Content-Disposition'] = 'attachment; filename=%s"' % basename(reportname)
         msg.attach(part)
 
-    body = "Текст сообщения"
+    body = "Автоматический отчет об тестировании"
     msg.attach(MIMEText(body, 'plain'))
 
     server = smtplib.SMTP_SSL('smpt.mail.ru', 465)

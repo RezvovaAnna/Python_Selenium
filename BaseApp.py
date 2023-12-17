@@ -1,5 +1,4 @@
 import logging
-
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -41,3 +40,5 @@ class BasePage:
         except:
             logging.exception('Exception with alert')
             return None
+
+

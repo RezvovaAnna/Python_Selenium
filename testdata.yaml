@@ -1,3 +1,5 @@
 name: 'Anna_Rezvova'
 passwd: '889081e5c1'
 browser: 'chrome'
+login_site: 'gateway/login'
+post_site: 'api/posts'

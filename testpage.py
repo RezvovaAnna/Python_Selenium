@@ -15,25 +15,6 @@ class TestSearchLocators:
     for locator in locators['css'].keys():
         ids[locator] = (By.CSS_SELECTOR, locators['css'][locator])
 
-    # LOCATOR_LOGIN_FIELD = (By.XPATH, """//*[@id="login"]/div[1]/label/input""")
-    # LOCATOR_PASS_FIELD = (By.XPATH, """//*[@id="login"]/div[2]/label/input""")
-    # LOCATOR_LOGIN_BTN = (By.XPATH, """//*[@id="login"]/div[3]/button""")
-    # LOCATOR_ERROR_FIELD = (By.XPATH, """//*[@id="app"]/main/div/div/div[2]/h2""")
-    # LOCATOR_LOGIN_RESULT = (By.XPATH, """//*[@id="app"]/main/div/div[1]/h1""")
-    # LOCATOR_CREATE_POST_BTN = (By.XPATH, """//*[@id="create-btn"]""")
-    # LOCATOR_TITTLE_FIELD = (By.XPATH, """//*[@id="create-item"]/div/div/div[1]/div/label/input""")
-    # LOCATOR_DESCRIPTION_FIELD = (By.XPATH, """//*[@id="create-item"]/div/div/div[2]/div/label/span/textarea""")
-    # LOCATOR_CONTENT_FIELD = (By.XPATH,"""//*[@id="create-item"]/div/div/div[3]/div/label/span/textarea""")
-    # LOCATOR_SAVE_POST_BTN = (By.XPATH, """//*[@id="create-item"]/div/div/div[7]/div/button/span""")
-    # LOCATOR_SAVE_POST_RESULT = (By.CSS_SELECTOR, """#app > main > div > div.container.svelte-tv8alb > h1""")
-    # LOCATOR_PROFILE_FIELD = (By.XPATH, """//*[@id="app"]/main/nav/ul/li[3]/a""")
-    # LOCATOR_LOGOUT_FIELD = (By.XPATH, """//*[@id="app"]/main/nav/ul/li[3]/div/ul/li[3]""")
-    # LOCATOR_CONTACT_FIELD = (By.XPATH, """//*[@id="app"]/main/nav/ul/li[2]/a""")
-    # LOCATOR_CONTACT_NAME_FIELD = (By.XPATH, """//*[@id="contact"]/div[1]/label/input""")
-    # LOCATOR_CONTACT_EMAIL_FIELD = (By.XPATH, """//*[@id="contact"]/div[2]/label/input""")
-    # LOCATOR_CONTACT_CONTENT_FIELD = (By.XPATH, """//*[@id="contact"]/div[3]/label/span/textarea""")
-    # LOCATOR_CONTACT_US_BTN = (By.XPATH, """//*[@id="contact"]/div[4]/button""")
-
 
 class OperationsHelper(BasePage):
 
